@@ -1,6 +1,5 @@
-import { restaurants } from "../constants";
 import RestaurantCard from "./RestaurantCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const filterData = (searchTxt, restaurantList) => {
   return restaurantList.filter((restaurant) =>
@@ -9,8 +8,24 @@ const filterData = (searchTxt, restaurantList) => {
 };
 
 const Body = () => {
-  const [restaurantList, setRestaurantList] = useState(restaurants);
+  const [restaurantList, setRestaurantList] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchTxt, setSearchTxt] = useState(""); // To create state variable
+
+  useEffect(() => {
+    getRestaurants();
+  }, []);
+
+  async function getRestaurants() {
+    const response = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.2958104&lng=76.6393805&page_type=DESKTOP_WEB_LISTING"
+    );
+    const data = await response.json();
+    const restoList  = data?.data?.cards[2]?.data?.data?.cards;
+    setRestaurantList(restoList);
+    setFilteredRestaurants(restoList);
+  }
+
   return (
     <>
       <div className="search-container">
@@ -28,14 +43,14 @@ const Body = () => {
           className="search-btn"
           onClick={() => {
             const data = filterData(searchTxt, restaurantList);
-            setRestaurantList(data);
+            setFilteredRestaurants(data);
           }}
         >
           Search
         </button>
       </div>
       <div className="restaurant-list">
-        {restaurantList.map((restaurant) => {
+        {filteredRestaurants.map((restaurant) => {
           return (
             <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
           );
