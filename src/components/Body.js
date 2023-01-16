@@ -1,5 +1,6 @@
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 
 const filterData = (searchTxt, restaurantList) => {
   return restaurantList.filter((restaurant) =>
@@ -21,12 +22,14 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.2958104&lng=76.6393805&page_type=DESKTOP_WEB_LISTING"
     );
     const data = await response.json();
-    const restoList  = data?.data?.cards[2]?.data?.data?.cards;
+    const restoList = data?.data?.cards[2]?.data?.data?.cards;
     setRestaurantList(restoList);
     setFilteredRestaurants(restoList);
   }
 
-  return (
+  return !restaurantList.length ? (
+    <Shimmer />
+  ) : (
     <>
       <div className="search-container">
         <input
@@ -50,11 +53,15 @@ const Body = () => {
         </button>
       </div>
       <div className="restaurant-list">
-        {filteredRestaurants.map((restaurant) => {
-          return (
-            <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
-          );
-        })}
+        {!filteredRestaurants.length ? (
+          <h1>No search matching your query</h1>
+        ) : (
+          filteredRestaurants.map((restaurant) => {
+            return (
+              <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
+            );
+          })
+        )}
       </div>
     </>
   );
