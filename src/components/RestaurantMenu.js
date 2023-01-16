@@ -12,14 +12,14 @@ const RestaurantMenu = () => {
     getRestaurantInfo(id);
   }, []);
 
-  async function getRestaurantInfo(id) {
+  const getRestaurantInfo = async (id) => {
     const response = await fetch(
       `https://www.swiggy.com/dapi/menu/v4/full?lat=12.2958104&lng=76.6393805&menuId=${id}`
     );
     const json = await response.json();
     setRestaurant(json?.data);
     console.log(json);
-  }
+  };
   return !restaurant ? (
     <Shimmer />
   ) : (

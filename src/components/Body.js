@@ -18,15 +18,15 @@ const Body = () => {
     getRestaurants();
   }, []);
 
-  async function getRestaurants() {
+  const getRestaurants = async () => {
     const response = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.2958104&lng=76.6393805&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.283007&lng=76.6476158&page_type=DESKTOP_WEB_LISTING"
     );
     const data = await response.json();
     const restoList = data?.data?.cards[2]?.data?.data?.cards;
     setRestaurantList(restoList);
     setFilteredRestaurants(restoList);
-  }
+  };
 
   return !restaurantList.length ? (
     <Shimmer />
