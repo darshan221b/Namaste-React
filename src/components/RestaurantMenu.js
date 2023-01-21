@@ -7,20 +7,28 @@ const RestaurantMenu = () => {
   const { id } = useParams();
 
   const [restaurant, setRestaurant] = useState(null);
+  const [isApiError, setIsApiError] = useState(false);
 
   useEffect(() => {
     getRestaurantInfo(id);
   }, []);
 
   const getRestaurantInfo = async (id) => {
-    const response = await fetch(
-      `https://www.swiggy.com/dapi/menu/v4/full?lat=12.2958104&lng=76.6393805&menuId=${id}`
-    );
-    const json = await response.json();
-    setRestaurant(json?.data);
-    console.log(json);
+    try {
+      const response = await fetch(
+        `https://www.swiggy.com/dapi/menu/v4/full?lat=12.2958104&lng=76.6393805&menuId=${id}`
+      );
+      const json = await response.json();
+      setRestaurant(json?.data);
+      console.log(json);
+    } catch (err) {
+      console.log(err);
+      setIsApiError(true);
+    }
   };
-  return !restaurant ? (
+  return isApiError ? (
+    <h1>Menu API error</h1>
+  ) : !restaurant ? (
     <Shimmer />
   ) : (
     <div className="menu">

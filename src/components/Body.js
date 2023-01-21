@@ -13,22 +13,30 @@ const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchTxt, setSearchTxt] = useState(""); // To create state variable
+  const [isApiError, setIsApiError] = useState(false);
 
   useEffect(() => {
     getRestaurants();
   }, []);
 
   const getRestaurants = async () => {
-    const response = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.283007&lng=76.6476158&page_type=DESKTOP_WEB_LISTING"
-    );
-    const data = await response.json();
-    const restoList = data?.data?.cards[2]?.data?.data?.cards;
-    setRestaurantList(restoList);
-    setFilteredRestaurants(restoList);
+    try {
+      const response = await fetch(
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.283007&lng=76.6476158&page_type=DESKTOP_WEB_LISTING"
+      );
+      const data = await response.json();
+      const restoList = data?.data?.cards[2]?.data?.data?.cards;
+      setRestaurantList(restoList);
+      setFilteredRestaurants(restoList);
+    } catch (err) {
+      console.log(err);
+      setIsApiError(true);
+    }
   };
 
-  return !restaurantList.length ? (
+  return isApiError ? (
+    <h1>API error</h1>
+  ) : !restaurantList.length ? (
     <Shimmer />
   ) : (
     <>
