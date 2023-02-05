@@ -8,16 +8,26 @@ import Contact from "./components/Contact";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/ProfileClass";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import Shimmer from "./components/Shimmer";
+import UserContext from "./utils/userContext";
 
 const AppLayout = () => {
+  const [user, setUser] = useState({
+    name: "Darshan",
+    email: "darshan@example.com",
+  });
   return (
-    <>
+    <UserContext.Provider
+      value={{
+        user,
+        setUser
+      }}
+    >
       <Header />
       <Outlet />
       <Footer />
-    </>
+    </UserContext.Provider>
   );
 };
 

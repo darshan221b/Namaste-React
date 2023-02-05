@@ -1,15 +1,17 @@
 import RestaurantCard from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/helper";
 import useOnline from "../utils/useOnline";
+import UserContext from "../utils/userContext";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchTxt, setSearchTxt] = useState(""); // To create state variable
   const [isApiError, setIsApiError] = useState(false);
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     getRestaurants();
@@ -32,8 +34,8 @@ const Body = () => {
 
   const isOnline = useOnline();
 
-  if(!isOnline) {
-    return <h1>Sorry!! you are not online!!</h1>
+  if (!isOnline) {
+    return <h1>Sorry!! you are not online!!</h1>;
   }
 
   return isApiError ? (
@@ -62,6 +64,15 @@ const Body = () => {
         >
           Search
         </button>
+        <input
+          value={user.name}
+          onChange={(e) => {
+            setUser({
+              ...user,
+              name: e.target.value
+            });
+          }}
+        ></input>
       </div>
       <div className="flex flex-wrap">
         {!filteredRestaurants.length ? (
