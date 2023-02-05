@@ -42,7 +42,7 @@ const Body = () => {
     <Shimmer />
   ) : (
     <>
-      <div className="search-container">
+      <div className="p-5 bg-blue-300 my-2">
         <input
           type="text"
           className="search-input"
@@ -54,7 +54,7 @@ const Body = () => {
         />
 
         <button
-          className="search-btn"
+          className="p-2 m-2 bg-purple-400 rounded hover:bg-purple-500"
           onClick={() => {
             const data = filterData(searchTxt, restaurantList);
             setFilteredRestaurants(data);
@@ -63,7 +63,7 @@ const Body = () => {
           Search
         </button>
       </div>
-      <div className="restaurant-list">
+      <div className="flex flex-wrap">
         {!filteredRestaurants.length ? (
           <h1>No search matching your query</h1>
         ) : (
