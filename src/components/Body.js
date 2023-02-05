@@ -2,12 +2,8 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-
-const filterData = (searchTxt, restaurantList) => {
-  return restaurantList.filter((restaurant) =>
-    restaurant.data.name.includes(searchTxt)
-  );
-};
+import { filterData } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -33,6 +29,12 @@ const Body = () => {
       setIsApiError(true);
     }
   };
+
+  const isOnline = useOnline();
+
+  if(!isOnline) {
+    return <h1>Sorry!! you are not online!!</h1>
+  }
 
   return isApiError ? (
     <h1>API error</h1>

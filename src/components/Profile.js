@@ -6,23 +6,23 @@ const Profile = () => {
 
   useEffect(() => {
     console.log("USEEFFECT");
-    // const timer = setInterval(() => {
-    //   console.log("Hello world");
-    // }, 1000);
+    const timer = setInterval(() => {
+      console.log("Hello world");
+    }, 1000);
 
     return () => {
-        // clearInterval(timer);
+        clearInterval(timer);
         console.log("UseEffect return");   // unmounting phase
     }
   }, []);
 
-  // useEffect(() => {
-  //     console.log("Count 1");
-  // }, [count]);
+  useEffect(() => {
+      console.log("Count 1");
+  }, [count]);
 
-  // useEffect(() => {
-  //     console.log("Count 2");
-  // }, [count2]);
+  useEffect(() => {
+      console.log("Count 2");
+  }, [count2]);
 
   return (
     <div>

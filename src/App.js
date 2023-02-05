@@ -8,6 +8,8 @@ import Contact from "./components/Contact";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/ProfileClass";
+import { lazy, Suspense } from "react";
+import Shimmer from "./components/Shimmer";
 
 const AppLayout = () => {
   return (
@@ -18,6 +20,8 @@ const AppLayout = () => {
     </>
   );
 };
+
+const InstaMart = lazy(() => import("./components/Instamart"));
 
 const appRouter = createBrowserRouter([
   {
@@ -46,6 +50,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:id",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/instamart",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <InstaMart />
+          </Suspense>
+        ),
       },
     ],
   },
