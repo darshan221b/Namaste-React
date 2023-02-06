@@ -11,6 +11,13 @@ import Profile from "./components/ProfileClass";
 import { lazy, Suspense, useState } from "react";
 import Shimmer from "./components/Shimmer";
 import UserContext from "./utils/userContext";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { Provider } from "react-redux";
+import store from "./utils/store";
+import Cart from "./components/Cart";
+
+const queryClient = new QueryClient();
 
 const AppLayout = () => {
   const [user, setUser] = useState({
@@ -18,16 +25,18 @@ const AppLayout = () => {
     email: "darshan@example.com",
   });
   return (
-    <UserContext.Provider
-      value={{
-        user,
-        setUser
-      }}
-    >
-      <Header />
-      <Outlet />
-      <Footer />
-    </UserContext.Provider>
+    <Provider store={store}>
+      <UserContext.Provider
+        value={{
+          user,
+          setUser,
+        }}
+      >
+        <Header />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -58,6 +67,10 @@ const appRouter = createBrowserRouter([
         element: <Contact />,
       },
       {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
         path: "/restaurant/:id",
         element: <RestaurantMenu />,
       },
@@ -74,4 +87,9 @@ const appRouter = createBrowserRouter([
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={appRouter} />);
+root.render(
+  <QueryClientProvider client={queryClient}>
+    <RouterProvider router={appRouter} />
+    <ReactQueryDevtools initialIsOpen={false} />
+  </QueryClientProvider>
+);
