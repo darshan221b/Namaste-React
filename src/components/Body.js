@@ -46,6 +46,7 @@ const Body = () => {
     <>
       <div className="p-5 bg-blue-300 my-2">
         <input
+          data-testid="search-input"
           type="text"
           className="search-input"
           placeholder="Search for restaurants"
@@ -56,6 +57,7 @@ const Body = () => {
         />
 
         <button
+          data-testid="search-btn"
           className="p-2 m-2 bg-purple-400 rounded hover:bg-purple-500"
           onClick={() => {
             const data = filterData(searchTxt, restaurantList);
@@ -69,12 +71,12 @@ const Body = () => {
           onChange={(e) => {
             setUser({
               ...user,
-              name: e.target.value
+              name: e.target.value,
             });
           }}
         ></input>
       </div>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap" data-testid="restaurant-list">
         {!filteredRestaurants.length ? (
           <h1>No search matching your query</h1>
         ) : (
