@@ -1,0 +1,16 @@
+React Life Cycle
+    https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+Why do we need super(props)?
+    This thing basically allows accessing this.props in a Constructor function. 
+    In fact, what the super() function does is, calls the constructor of the parent class. 
+
+Why async wont work with useEffect
+    Because React’s useEffect hook expects a cleanup function returned from it which is called when the component unmounts.
+    Using an async function here will cause a bug as the cleanup function will never get called. Yikes! 
+
+Code splittiing - lazy loading
+
+Suspense
+    Suspense lets components “wait” for something before rendering.
+    Today, Suspense only supports one use case: loading components dynamically with React.lazy.

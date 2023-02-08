@@ -20,6 +20,7 @@ test("Add items to cart", async () => {
       <Provider store={store}>
         <Header />
         <RestaurantMenu />
+        {/* <Cart /> add as many components for integration testing*/} 
       </Provider>
     </StaticRouter>
   );

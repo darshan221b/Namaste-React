@@ -1,0 +1,44 @@
+What are microservices?
+  Microservices - also known as the microservice architecture - is an architectural style that structures an application as a collection of services that are
+
+    Independently deployable
+    Loosely coupled
+    Organized around business capabilities
+    Owned by a small team
+    Highly maintainable and testable
+
+useEffect
+    useEffect is a React Hook that lets you synchronize a component with an external system.
+
+Optional chaining (?.)
+    The optional chaining (?.) operator accesses an object's property or calls a function.
+     If the object accessed or function called using this operator is undefined or null, 
+     the expression short circuits and evaluates to undefined instead of throwing an error.
+
+Statements and expressions
+    JavaScript distinguishes expressions and statements.
+    An expression produces a value and can be written wherever a value is expected,
+    for example as an argument in a function call. Each of the following lines contains an expression:
+        myvar
+        3 + x
+        myfunc("a", "b")
+    Roughly, a statement performs an action. Loops and if statements are examples of statements.
+    A program is basically a sequence of statements (we’re ignoring declarations here).
+    Wherever JavaScript expects a statement, you can also write an expression. 
+    Such a statement is called an expression statement. The reverse does not hold: you cannot
+    write a statement where JavaScript expects an expression. For example, an if statement cannot become the argument of a function.
+
+Server Side Routing vs Client-Side Routing
+    In server-side routing what usually happens when you are entering a URL for the first time 
+    or you want to change the page, maybe you click on the about us section or the navbar,
+    the browser immediately detects that change in the URL then the browser makes an HTTP request to the server 
+    then the server re-renders the HTML into the application, now this can be very expensive
+    and would require time-based on the internet speed and some other factors.
+
+    In client side routing we don't need to go through all these stages,
+    although when we first load the application that is inputing the web address the full react app is being rendered from the server,
+    but after that when you want to change pages, maybe you click on the navbar the browser watches for change
+    in the URL and immediately it detects change in the URL it uses the HTML5 
+    history API to fetch the page that has already been loaded in when the application was first 
+    loaded in and returns it to the browser
+

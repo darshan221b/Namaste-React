@@ -1,0 +1,28 @@
+What is Emmet?
+        Emmet is a free add-on for your text editor that allows you to type shortcuts that are then expanded
+    into full pieces of code. By using Emmet, email designers type less, saving both keystrokes and time
+    when building a campaign. Also, relying on Emmet’s autocompletion means fewer typos and missing tags,
+    leading to more robust emails.
+
+Difference between a Library and Framework?
+        When you use a library, you are in charge of the flow of the application.
+    You are choosing when and where to call the library. When you use a framework, the framework
+    is in charge of the flow. It provides some places for you to plug in your code, but it calls the code you plugged in as needed.
+The difference whether it is a library or framework is whether or not there is an inversion of control.
+
+What is CDN? Why do we use it?
+
+    A content delivery network (CDN) is a network of interconnected servers that speeds up webpage loading for data-heavy applications. CDN can stand for content delivery network or content distribution network.
+    A CDN improves efficiency by introducing intermediary servers between the client and the website server. These CDN servers manage some of the client-server communications. They decrease web traffic to the web server, reduce bandwidth consumption, and improve the user experience of your applications.
+
+What is crossorigin in script tag?
+
+    crossorigin attribute sets the mode of the request to an HTTP CORS Request.
+    Web pages often make requests to load resources on other servers. Here is where CORS comes in.
+    A cross-origin request is a request for a resource (e.g. style sheets, iframes, images, fonts, or scripts) from another domain.
+
+What is async and defer?
+    Async in script tag in JavaScript is a way to load scripts asynchronously. That means, if a script is async, it will be loaded independently of other scripts on the page, and will not block the page from loading.
+    <script async src="script.js"></script>
+    By using the defer attribute in HTML, the browser will load the script only after parsing (loading) the page. This can be helpful if you have a script that is dependent on other scripts, or if you want to improve the loading time of your page by loading scripts after the initial page load.
+    <script defer src="script.js"></script>

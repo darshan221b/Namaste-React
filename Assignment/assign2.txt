@@ -1,0 +1,20 @@
+What is `Parcel/Webpack`? Why do we need it?
+    Parcel and webpack are the bundlers used mostly for JavaScript or Typescript code that helps you to minify, clean, and make your code compact .
+
+What is `npx` 
+
+    A package can be executable without installing the package. It is an npm package runner so if any packages aren’t already installed it will install them automatically
+    eg: npx create-react-app
+
+What is Tree Shaking?
+
+    Tree shaking is a term commonly used within a JavaScript context to describe the removal of dead code.
+It relies on the import and export statements to detect if code modules are exported and imported for use between JavaScript files.
+In modern JavaScript applications, we use module bundlers (e.g., webpack or parcel) to automatically remove dead code when bundling multiple JavaScript files into single files. This is important for preparing code that is production ready, for example with clean structures and minimal file size.
+
+What is Hot Module Replacement?
+    Hot Module Replacement (HMR) exchanges, adds, or removes modules while an application is running, without a full reload. This can significantly speed up development in a few ways: Retain application state which is lost during a full reload. Save valuable development time by only updating what's changed.
+
+What is the `dist` folder?
+    The /dist folder contains the minimized version of the source code. The code present in the /dist folder is actually the code which is used on production web applications
+
